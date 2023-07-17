@@ -1,7 +1,7 @@
 # AntennaPattern
 Calculate array factors and plot directivity patterns of array antenna
 
-## Sample
+## Examples
 Uniform and binomial arrays were prepared as array antennas. Let us illustrate these antenna patterns.  
 We can calculate and plot the antenna directivity like this.
 ![antenna directivity](results/antennapattern.jpg "directivity")
