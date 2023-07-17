@@ -1,11 +1,11 @@
-function AF = arrayfactor(w, theta, phi)
+function absAF = arrayfactor(w, theta, phi)
 % calculate the array factor for directivity plot
 % considering: ULA
 % Input
 %   w    : complex weight of array antenna
 %   theta: angle of azimuth [rad]
 % Output
-%   AF: normalized array factor
+%   absAF: absolute value of array factor
 
 %% initialization
 k0 = 2*pi; %wavenumber
@@ -22,4 +22,4 @@ end
 %% array factor
 absAF = abs(sum(w .* exp(1i * k0 * (z .* cos(theta'))), 2)); %ULA
 % absAF = abs(sum(w .* exp(1i * k0 * (sin(theta') .* (x * cos(phi) + y * sin(phi)) + z .* cos(theta'))), 2)); %UPA
-AF = absAF ./ max(absAF); %normalization
+end
