@@ -11,4 +11,4 @@ Also we can plot the antenna pattern in polar coordinates. (Note that the array 
 
 ### Notice
 We consider the *uniform linear array (ULA)*.
-If you want to apply this function to *phased linear array (PLA)*, please calculate the elevation previously.
+If you want to apply this function to *uniform planar array (UPA)*, please calculate the elevation previously.
