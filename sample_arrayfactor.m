@@ -45,10 +45,10 @@ grid on
 box on
 puni = plot(arr_theta_deg,20*log10(AFuni),'-' ,'Color',[0 0.5 0],'LineWidth',2);
 pbin = plot(arr_theta_deg,20*log10(AFbin),'-.','Color',[1 0.5 0],'LineWidth',2);
-ylim([-50 30])
+ylim([-40 20])
 xlim([0 180])
 legend([pbin, puni], {'Binomial beam', 'Uniform dist.'}, 'Interpreter', 'latex', 'FontSize', 15, 'Location','northeast')
-xticks([0 45 90 135 180])
+xticks([0 45 90 13a5 180])
 ax = gca;
 ax.XAxis.FontSize = 15;
 ax.YAxis.FontSize = 15;
@@ -69,7 +69,7 @@ binmin = min(AFbindB(find(AFbindB>rmin)));
 AFunidB(find(AFunidB<rmin)) = unimin;    
 AFbindB(find(AFbindB<rmin)) = binmin;
 
-ppiso = polarplot(theta, AFisodB, 'k-', 'LineWidth', 2);
+ppiso = polarplot(theta, AFisodB, 'k:', 'LineWidth', 2);
 hold on
 ppuni = polarplot(theta, AFunidB, '-' , 'Color', [0 0.5 0], 'LineWidth', 2);
 ppbin = polarplot(theta, AFbindB, '-.', 'Color', [1 0.5 0], 'LineWidth', 2);
