@@ -16,14 +16,17 @@ n=16;
 d=0.5;
 
 %% complex weight
-wuni = ones(1,6);   %uniform distribution
+wuni = ones(1,n) / sqrt(n);   %uniform distribution
 %binomial distribution
-wbin = sym([]);
+wbin = 0;
 for k = 0:n-1
     wbin = horzcat(wbin, nchoosek(n-1, k));
 end
+wbin = wbin(2:end);
+wbin = wbin/norm(wbin, 'fro');
 
 %% array factor
+AFiso = ones(length(theta),1); %isotropic antenna gain
 AFuni = arrayfactor(wuni, theta, phi);
 AFbin = arrayfactor(wbin, theta, phi);
 %%%%%%%%%% note %%%%%%%%%%
@@ -54,19 +57,23 @@ ylabel('Array gain [dB]', 'Interpreter', 'latex')
 
 figure(2) %with normalization
 rmin = -40; %minimum value of r axis
-rmax = 0;   %maximum value of r axis
+rmax = 20;   %maximum value of r axis
 %converted to dB value and normalization
-AFunidB = 20*log10(AFuni/max(AFuni));
-AFbindB = 20*log10(AFbin/max(AFbin));
+AFisodB = 20*log10(AFiso);
+AFunidB = 20*log10(AFuni);
+AFbindB = 20*log10(AFbin);
 %calcualte the minimum value to satisfy the r-axis threshold
 unimin = min(AFunidB(find(AFunidB>rmin)));
-unibin = min(AFbindB(find(AFbindB>rmin)));
+binmin = min(AFbindB(find(AFbindB>rmin)));
 %rewrite values below the r-axis threshold to the smallest value above the r-axis threshold
 AFunidB(find(AFunidB<rmin)) = unimin;    
-AFbindB(find(AFbindB<rmin)) = unibin;
+AFbindB(find(AFbindB<rmin)) = binmin;
 
-ppuni = polarplot(theta, AFunidB, '-' , 'Color', [0 0.5 0], 'LineWidth', 2);
+ppiso = polarplot(theta, AFisodB, 'k-', 'LineWidth', 2);
 hold on
+ppuni = polarplot(theta, AFunidB, '-' , 'Color', [0 0.5 0], 'LineWidth', 2);
 ppbin = polarplot(theta, AFbindB, '-.', 'Color', [1 0.5 0], 'LineWidth', 2);
-legend([ppbin, ppuni], {'Binomial beam', 'Uniform dist.'}, 'Interpreter', 'latex', 'FontSize', 15, 'Position',[0.63,0.77,0.25,0.10])
+legend([ppbin, ppuni, ppiso], {'Binomial beam', 'Uniform dist.', 'Isotropic'}, 'Interpreter', 'latex', 'FontSize', 15, 'Position',[0.63,0.77,0.25,0.10])
 rlim([rmin rmax])
+ax = gca;
+ax.GridAlpha = 1;
