@@ -48,7 +48,7 @@ pbin = plot(arr_theta_deg,20*log10(AFbin),'-.','Color',[1 0.5 0],'LineWidth',2);
 ylim([-40 20])
 xlim([0 180])
 legend([pbin, puni], {'Binomial beam', 'Uniform dist.'}, 'Interpreter', 'latex', 'FontSize', 15, 'Location','northeast')
-xticks([0 45 90 13a5 180])
+xticks([0 45 90 135 180])
 ax = gca;
 ax.XAxis.FontSize = 15;
 ax.YAxis.FontSize = 15;
